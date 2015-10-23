@@ -1,3 +1,3 @@
 window.onload=function(){
-  var ecq=null;  
+  var ecq=null;  //puta
 };
