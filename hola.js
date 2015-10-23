@@ -1,3 +1,3 @@
 window.onload=function(){
-  var ecq=null;  //puta
+  var ecq=null;  //putaaaaa
 };
