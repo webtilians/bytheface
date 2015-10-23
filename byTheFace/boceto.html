@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>ByTheFace</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/normalize.css" media="screen" />
+        <style>
+            body{
+
+            }
+            #imgLogo{
+                height:  100%;
+                margin-left: 5%;
+            }
+            header {
+                width:100%;
+                position:fixed;
+                top:0px;
+                height:100px;
+                background-color:#F0F0F0;
+                border:1px solid #CCC;
+                width:100%;
+                margin:0px auto;
+            }
+            nav{
+                margin-top: 100px;
+                height: 40px;
+                width: 100%;
+                float: left;
+                background-color: #34a953;
+
+            }
+            nav ul
+            {
+                margin-top: 0%; 
+                padding-top: 10px; 
+            }
+            nav ul li{
+                float:left;
+                list-style-type: none;
+                margin-left: 3%;
+            }
+            
+            #libuscar{
+                float: right;
+                margin-right: 5%;  
+            }
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <div id="cabecera"><img alt="logo" id="imgLogo" src="img/logo100.png"/><div id="redessociales"></div></div>
+        </header>
+        <nav>
+            <ul>
+                <li><select id="selCCAA" name="selCCAA"><option>CCAA</option></select></li>
+                <li><select id="selProvincias" name="selProvincias"><option>Provincias</option></select></li>
+                <li><select id="selTipo" name="selTipo"><option>tipo</option></select></li>
+                <li><input type="text" id="txcodPostal" placeholder="C.P."></li>
+                <li id="libuscar"><input type="text" id="txbuscar" placeholder="Buscar"></li>
+            </ul>
+        </nav>
+        <main><div id="contenedor">
+
+            </div>
+        </main>
+        <footer></footer> 
+        <script>
+            window.onload = function () {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4) {
+                        var result = JSON.parse(xmlhttp.responseText);
+                           for(var i=0;i<result.length;i++){
+                               
+                           } 
+                    }
+                };
+                xmlhttp.open("POST", "novedades.php", false);
+                console.log("llamando servidor");
+                xmlhttp.send();
+            };
+        </script>
+    </body>
+</html>

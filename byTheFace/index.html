@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>ByTheFace</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/normalize.css" media="screen" />
+        <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+        <style>
+            body {
+                font-family: 'Source Sans Pro', sans-serif;
+            }
+
+            #imgLogo{
+                height:  100%;
+                margin-left: 7%;
+            }
+            header {
+                width:100%;
+                position:fixed;
+                top:0px;
+                height:100px;
+                background-color:#F0F0F0;
+                border:1px solid #CCC;
+                width:100%;
+                margin:0px auto;
+            }
+            nav{
+                margin-top: 100px;
+                height: 40px;
+                width: 100%;
+                float: left;
+                background-color: #34a953;
+                position: fixed;
+
+            }
+            nav ul
+            {
+                margin-top: 0%; 
+                margin-left: 7.2%;
+                padding-left: 0%;
+                padding-top: 8px; 
+            }
+            nav ul li{
+                float:left;
+                list-style-type: none;
+                margin-right: 3%;
+            }
+
+            #libuscar{
+                float: right;
+                margin-right: 7%;  
+            }
+
+            #txcodPostal,#txBuscar,#selCCAA,#selProvincias,#selTipo
+            {
+                border-radius: 5px;
+            }
+            #contenedor{
+                float: left;
+               margin-top: 200px;
+               width: 100%;
+              
+                
+            }
+            .divFotos{
+                border: solid;
+                background-color: #F0F0F0;
+                float: left;
+                text-align: center;
+                display: inline;
+                margin-top: 50px;
+            }
+            main{
+                 margin: 0 auto;
+            }
+            .fotos{
+                width: 40%;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div id="cabecera"><img alt="logo" id="imgLogo" src="img/logo100.png"/><div id="redessociales"></div></div>
+        </header>
+        <main>
+        <nav>
+            <ul>
+                <li><select id="selCCAA" name="selCCAA"><option>Comunidad</option></select></li>
+                <li><select id="selProvincias" name="selProvincias"><option>Provincias</option></select></li>
+                <li><select id="selTipo" name="selTipo"><option>tipo</option></select></li>
+                <li><input type="text" id="txcodPostal" placeholder=" C.P." size="6"></li>
+                <li id="libuscar"><input type="text" id="txBuscar" placeholder=" Buscar..." size="15"></li>
+            </ul>
+        </nav>
+        <div id="contenedor">
+
+            </div>
+        </main>
+        <footer></footer> 
+        <script>
+            window.onload = function () {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4) {
+                        var result = JSON.parse(xmlhttp.responseText);
+                        
+                    }
+                };
+                xmlhttp.open("POST", "novedades.php", false);
+                console.log("llamando servidor");
+                xmlhttp.send();
+                var articulo={'idArticulo':1,'nombre':'mueble','localidad':'Malaga','imagen':'img/mueble.jpg'};
+                for(var i=0;i<=30;i++){
+                    pintarFotos(articulo);
+                }
+            };
+            var contenedor=window.document.getElementById('contenedor');
+            
+            function pintarFotos(articulo){
+                
+                var divFoto = document.createElement('div');
+
+                    divFoto.setAttribute('id', "div_" +articulo.idArticulo);
+                    divFoto.className='divFotos';
+                    divFoto.addEventListener('click',function(){
+                        verArticulo(this.id);
+                    });
+                   // var imagen=document.createElement("img");
+                  //  imagen.src = articulo.imagen;
+                  //  imagen.className="imgArticulos";
+                  //  divFoto.appendChild(imagen);
+                    divFoto.innerHTML='<img class="fotos" src="'+articulo.imagen+'"/><p>'+articulo.nombre+'</p><p>'+articulo.localidad+'</p>';
+                    contenedor.appendChild(divFoto);
+                     
+            }
+        </script>
+    </body>
+</html>
